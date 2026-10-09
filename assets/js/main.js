@@ -34,6 +34,22 @@
 
   /* ============================ 1. Release ============================ */
 
+  var releaseVer = '';   // 形如 "2.1.0"(不带 v)
+
+  /** 回填版本号文案。releaseVer 为空时整行隐藏, 不把 %v% 占位符露给用户。 */
+  function renderVersion() {
+    var verEl = $('#dlVersion');
+    if (!verEl) return;
+    if (!releaseVer) { verEl.hidden = true; return; }
+    verEl.hidden = false;
+    var tpl = T('hero.version');
+    verEl.innerHTML = tpl && tpl.indexOf('%v%') >= 0
+      ? tpl.replace('%v%', releaseVer)
+      : tpl;
+    var fv = $('#footVersion');
+    if (fv) fv.textContent = 'v' + releaseVer;
+  }
+
   function loadRelease() {
     var verEl = $('#dlVersion');
     if (!verEl) return;
@@ -41,15 +57,8 @@
     return gh('/releases/latest').then(function (rel) {
       var v = String(rel.tag_name || '').replace(/^v/, '');
       if (!v) return;
-
-      // Hero / 下载区的版本号文案(含 %v% 占位)
-      var tpl = T('hero.version');
-      if (tpl && tpl.indexOf('%v%') >= 0) {
-        verEl.innerHTML = tpl.replace('%v%', v);
-      }
-
-      var fv = $('#footVersion');
-      if (fv) fv.textContent = 'v' + v;
+      releaseVer = v;
+      renderVersion();
 
       // 直接指向具体版本的安装包
       var dmg = rel.assets && rel.assets.filter(function (a) { return /\.dmg$/i.test(a.name); })[0];
@@ -85,12 +94,18 @@
   /* =================== 2. Issues 当 CMS =================== */
 
   var postsCache = null;
+  var postsFailed = false;   // 记录是否加载失败, 以便切语言时重绘错误文案
 
   function renderPosts(items) {
     var box = $('#posts');
     if (!box) return;
 
-    if (!items.length) {
+    if (postsFailed) {
+      box.innerHTML = '<p class="dim">' + T('posts.error') + '</p>';
+      return;
+    }
+
+    if (!items || !items.length) {
       box.innerHTML = '<p class="dim">' + T('posts.empty') + '</p>';
       return;
     }
@@ -156,8 +171,9 @@
     if (postsCache) { renderPosts(postsCache); return; }
 
     return gh('/issues?state=all&per_page=30&labels=post')
-      .then(function (items) { postsCache = items; renderPosts(items); })
+      .then(function (items) { postsCache = items; postsFailed = false; renderPosts(items); })
       .catch(function () {
+        postsFailed = true;
         box.innerHTML = '<p class="dim">' + T('posts.error') + '</p>';
       });
   }
@@ -312,20 +328,14 @@
     initTheme();
     initLightbox();
     initReveal();
+    renderVersion();   // 先隐藏 %v% 占位行, 拿到 release 再显示
 
     // 语言切换后: 需要重绘的动态内容
     document.addEventListener('i18n:changed', function () {
-      var verEl = $('#dlVersion');
-      if (verEl && postsCache) renderPosts(postsCache);
       // 版本号占位符重新填充
-      if (verEl) {
-        var tpl = T('hero.version');
-        var m = tpl && tpl.match(/%v%/);
-        var fv = $('#footVersion');
-        if (m && fv && fv.textContent) {
-          verEl.innerHTML = tpl.replace('%v%', fv.textContent.replace(/^v/, ''));
-        }
-      }
+      renderVersion();
+      // 日志列表(成功 / 失败两种状态都要跟着换语言)
+      renderPosts(postsCache || []);
     });
 
     loadRelease();
