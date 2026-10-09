@@ -367,7 +367,14 @@ h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -0.02em; margin: 0; }
   }
   .nav-inner > .nav-links.open { transform: translateY(0); }
   .nav-links > a { padding: 12px var(--gutter); width: 100%; }
-  .nav-cta { margin: 6px var(--gutter) 10px; text-align: center; }
+  /* 上面的 .nav-links > a 特异性为 (0,1,1), 高于 .nav-cta 的 (0,1,0),
+     会把 width 抢成 100%; 再叠加左右 margin 就超出视口, 在 <1024px
+     时产生横向滚动条。这里必须用同等特异性才能覆盖。 */
+  .nav-links > .nav-cta {
+    width: calc(100% - var(--gutter) * 2);
+    margin: 6px var(--gutter) 10px;
+    text-align: center;
+  }
 }
 
 /* ============================ Hero ============================ */

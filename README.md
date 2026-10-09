@@ -14,13 +14,18 @@ python3 -m http.server 8899
 ```
 .
 ├── index.html              # 单页官网（Hero / 痛点 / 原理 / 亮点 / 截图 / 下载 / 日志 / FAQ）
+├── privacy.html            # 隐私政策
+├── terms.html              # 服务条款
 ├── assets/
 │   ├── css/style.css       # 设计令牌 + 全部样式（深浅色自适应）
 │   ├── js/main.js          # GitHub API + Issues CMS + 交互
 │   ├── logo.png
 │   └── screenshots/        # 真实界面截图
 ├── capture.sh              # 自动截取 AISub 运行界面
-└── .github/workflows/deploy.yml
+├── tools/
+│   ├── make-og.js           # 生成 1200x630 的 OG 卡片
+│   └── og-template.html     # 卡片设计稿（复用官网设计令牌）
+├── .github/workflows/deploy.yml
 ```
 
 ## 两个「动态」特性
@@ -58,6 +63,20 @@ python3 -m http.server 8899
 ```
 
 或手动截图后覆盖 `assets/screenshots/` 下的同名文件。
+
+## 社交卡片（OG image）
+
+分享到 X / Reddit / HN 时，链接卡片用的是 `assets/og-image.png`（1200x630）。
+改文案后重新生成：
+
+```bash
+node tools/make-og.js
+```
+
+脚本直接渲染 `tools/og-template.html`，里面复用了官网的色板令牌，
+所以卡片和站点视觉自动保持一致。改文案就改模板，别手改 PNG。
+
+脚本会在截图前断言「无元素超出 1200x630 画布」，避免文字被平台裁掉却没人发现。
 
 ## 配色
 
