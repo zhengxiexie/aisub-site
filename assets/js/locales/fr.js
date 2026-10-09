@@ -76,7 +76,7 @@ window.I18N.define('fr', {
   'dl.sub': 'Nécessite votre propre clé API IA (tout endpoint compatible Anthropic)',
   'dl.dmg': 'Télécharger le .dmg (recommandé)',
   'dl.zip': 'Télécharger le .zip',
-  'dl.note': 'macOS 14 Sonoma ou ultérieur · aucune dépendance',
+'dl.note': 'macOS 14 Sonoma ou ultérieur · Apple Silicon · nécessite ffmpeg (brew install ffmpeg)',
   'dl.sign': '⚠︎ Non signé avec un certificat développeur payant — clic droit → Ouvrir au premier lancement',
   'dl.file': 'Fichier',
   'dl.size': 'Taille',
@@ -107,10 +107,12 @@ window.I18N.define('fr', {
   'faq.5.q': 'Pourquoi le code n’est-il pas public ?',
   'faq.5.a1': 'AISub est distribué sous forme d’application signée et le code n’est pas public pour le moment. Si vous avez un besoin précis, décrivez-le dans une Issue.',
 
-  'foot.tagline': 'Écrit en Swift + AppKit · Aucune dépendance tierce',
+'foot.tagline': 'Écrit en Swift + AppKit · Utilise ffmpeg (GPL/LGPL)',
   'foot.links': 'GitHub',
   'foot.releases': 'Releases',
-  'foot.feedback': 'Retours',
+'foot.feedback': 'Retours',
+  'foot.privacy': 'Confidentialité',
+  'foot.terms': 'Conditions',
 
   'img.main.alt': 'AISub traduit une saison entière : épisode 2 à 180/596, le reste en attente, avec le panneau de journal montrant l’analyseur Matroska intégré localisant 596 sous-titres via un index de 2,43 Mo',
   'img.drop.alt': 'État vide : glissez des vidéos ou des fichiers de sous-titres, ou un dossier pour une saison entière',

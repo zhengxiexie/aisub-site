@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy · AISub</title>
+<meta name="description" content="How AISub handles your data: local processing, Keychain-stored API key, and the exact text sent to your chosen AI provider.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .doc { max-width: 760px; margin: 0 auto; padding: 96px 24px 120px; }
+  .doc h1 { font-size: 40px; letter-spacing: -.02em; margin: 0 0 8px; }
+  .doc .meta { color: var(--text-mute); font-size: 14px; margin-bottom: 8px; }
+  .doc h2 { font-size: 22px; margin: 40px 0 12px; letter-spacing: -.01em; }
+  .doc p, .doc li { color: var(--text-2); line-height: 1.75; font-size: 16px; }
+  .doc ul { padding-left: 22px; }
+  .doc li { margin: 6px 0; }
+  .doc code { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 13px; }
+  .doc strong { color: var(--text); }
+  .doc .note { border-left: 3px solid var(--brand); padding: 12px 18px; background: var(--surface); border-radius: 0 10px 10px 0; margin: 20px 0; }
+  .doc .note p { margin: 0; color: var(--text); }
+  .doc a { color: var(--brand); }
+  .doc hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+  .doc table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  .doc th, .doc td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .doc th { color: var(--text); font-weight: 600; }
+  .doc td:first-child { white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html">
+      <img src="assets/logo.png" alt="AISub">
+      <span>AISub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html" aria-current="page">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </div>
+</nav>
+
+<main class="doc">
+  <span class="eyebrow">LEGAL</span>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Effective 9 October 2026 · Applies to AISub 2.1.0 and later</p>
+
+  <div class="note">
+    <p><strong>Short version:</strong> AISub has no account, no telemetry and no analytics. Your video and subtitle files are never uploaded anywhere. The only data that leaves your Mac is the subtitle text you chose to translate, and that goes to the AI provider <em>you</em> configured.</p>
+  </div>
+
+  <h2>1. What AISub does not do</h2>
+  <p>The app contains no telemetry, no analytics SDK, no crash reporting service and no advertising identifier. It does not collect usage statistics and it does not phone home. The only network requests the app makes are the two described below.</p>
+
+  <h2>2. The two network requests</h2>
+  <table>
+    <thead><tr><th>Request</th><th>When</th><th>What is sent</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Your AI endpoint</td>
+        <td>Only when you start a translation job</td>
+        <td>The subtitle lines in the current batch, plus a few lines of preceding context so the translation reads naturally. Never the video, never the file path, never your filesystem.</td>
+      </tr>
+      <tr>
+        <td>GitHub Releases API</td>
+        <td>Once at launch, and when you check for updates</td>
+        <td>A normal HTTPS GET for the public release metadata. No personal data is attached.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>The app also runs a connectivity test when you press the connection test button. That sends the fixed string <code>Reply with exactly: OK</code> so the API key can be verified before a long job starts. No subtitle content is involved.</p>
+
+  <h2>3. Who receives your subtitle text</h2>
+  <p>AISub ships with <code>https://api.anthropic.com</code> as the default endpoint, but you can change it to any Anthropic-compatible address, including a local proxy or a self-hosted model server. Whatever you set is what receives the text.</p>
+  <p>Once the text leaves your Mac, it is governed by that provider's privacy policy, not by this one. If that matters to you, point the app at a local endpoint such as Ollama or a proxy you control. We never see, log or store your subtitle content.</p>
+
+  <div class="note">
+    <p><strong>Copyright reminder:</strong> translating subtitles from a film or series is something you do for personal use. AISub does not grant you any rights to distribute translated copies of copyrighted material. See <a href="terms.html">Terms of Use</a>.</p>
+  </div>
+
+  <h2>4. What stays on your Mac</h2>
+  <ul>
+    <li><strong>Your files.</strong> Videos and generated <code>.srt</code> files are read and written entirely on your Mac. Nothing is uploaded.</li>
+    <li><strong>Your API key.</strong> Stored in the macOS Keychain under the service name <code>com.zhengxie.aisub</code>, never in a preferences file. This is deliberate: a plist in <code>~/Library/Preferences</code> can be read by any process on the machine and swept up by backups. If you used an older build that stored the key in plain text, AISub migrates it into the Keychain on first launch and deletes the old copy. You can verify this by searching for <code>apiKey</code> in <code>defaults read com.zhengxie.aisub</code> — it should not appear.</li>
+    <li><strong>Your settings.</strong> Language, batch size, theme and tool paths are stored in standard macOS <code>UserDefaults</code> under <code>com.zhengxie.aisub</code>. These are preferences only and contain nothing sensitive.</li>
+    <li><strong>Resume progress.</strong> If you enable checkpointing, translation progress is written to a file next to your output so an interrupted job can continue. Delete it whenever you like.</li>
+  </ul>
+
+  <h2>5. Local subprocesses</h2>
+  <p>AISub shells out to <code>ffmpeg</code> and <code>ffprobe</code> to read the embedded subtitle track out of your video. These are the same tools you install from Homebrew for any video work. AISub never uploads files itself, and it does not modify or delete your originals.</p>
+  <p><strong>ffmpeg is not bundled.</strong> It must already be on your system, for example <code>brew install ffmpeg</code>. The path is configurable in Settings if it lives somewhere unusual.</p>
+
+  <h2>6. Third-party services</h2>
+  <ul>
+    <li><strong>Your AI provider</strong> — receives subtitle text as described in section 3.</li>
+    <li><strong>GitHub</strong> — serves the release files you download and the update check. Your download is an ordinary request to a public CDN.</li>
+    <li><strong>ffmpeg</strong> — runs locally on your machine. It makes no network requests.</li>
+  </ul>
+  <p>We do not embed advertising trackers, session replay tools or third-party pixels anywhere in AISub or on this website.</p>
+
+  <h2>7. Children</h2>
+  <p>AISub is a general-purpose utility and is not directed at children. Because we collect no personal data at all, there is nothing about a user to collect.</p>
+
+  <h2>8. Your rights</h2>
+  <p>Because AISub collects no personal data, there is nothing stored on our side to export, correct or delete. You can remove everything AISub leaves on your Mac by deleting the app, or by running:</p>
+  <ul>
+    <li><code>defaults delete com.zhengxie.aisub</code> to clear settings</li>
+    <li>Keychain Access → search <code>com.zhengxie.aisub</code> to delete the stored API key</li>
+  </ul>
+
+  <h2>9. Changes</h2>
+  <p>If this policy changes, the effective date at the top is updated and the new version is published at this URL. Material changes will also be noted in the app's changelog.</p>
+
+  <hr>
+  <p style="color:var(--text-mute);font-size:14px">AISub is an independent project and is not affiliated with, endorsed by or sponsored by Anthropic. "Anthropic" is a trademark of its respective owner, used here only to describe the compatible API format the app can talk to.</p>
+  <p style="color:var(--text-mute);font-size:14px"><a href="index.html">← Back to AISub</a></p>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">AISub</div>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="https://github.com/zhengxiexie/aisub/issues" target="_blank" rel="noopener">Feedback</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

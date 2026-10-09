@@ -76,7 +76,7 @@ window.I18N.define('de', {
   'dl.sub': 'Erfordert deinen eigenen KI-API-Schlüssel (jeder Anthropic-kompatible Endpunkt)',
   'dl.dmg': '.dmg herunterladen (empfohlen)',
   'dl.zip': '.zip herunterladen',
-  'dl.note': 'macOS 14 Sonoma oder neuer · keine Zusatzabhängigkeiten',
+'dl.note': 'macOS 14 Sonoma oder neuer · Apple Silicon · benötigt ffmpeg (brew install ffmpeg)',
   'dl.sign': '⚠︎ Nicht mit kostenpflichtigem Entwicklerzertifikat signiert — beim ersten Start Rechtsklick → Öffnen',
   'dl.file': 'Datei',
   'dl.size': 'Größe',
@@ -107,10 +107,12 @@ window.I18N.define('de', {
   'faq.5.q': 'Warum ist der Quellcode nicht öffentlich?',
   'faq.5.a1': 'AISub wird als signiertes App-Bundle ausgeliefert, der Quellcode ist derzeit nicht öffentlich. Wenn du ein konkretes Anliegen hast, beschreibe es bitte in einem Issue.',
 
-  'foot.tagline': 'Geschrieben in Swift + AppKit · Keine Drittanbieter-Abhängigkeiten',
+'foot.tagline': 'Geschrieben in Swift + AppKit · Nutzt ffmpeg (GPL/LGPL)',
   'foot.links': 'GitHub',
   'foot.releases': 'Releases',
-  'foot.feedback': 'Feedback',
+'foot.feedback': 'Feedback',
+  'foot.privacy': 'Datenschutz',
+  'foot.terms': 'Bedingungen',
 
   'img.main.alt': 'AISub übersetzt eine ganze Staffel: Folge 2 bei 180/596, der Rest wartet, im Log-Panel findet 596 Untertitel über einen nur 2,43 MB großen Index',
   'img.drop.alt': 'Leerer Zustand: Videos oder Untertiteldateien ziehen, oder einen Ordner für eine ganze Staffel',

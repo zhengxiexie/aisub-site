@@ -76,7 +76,7 @@ window.I18N.define('zh-Hant', {
   'dl.sub': '需要你自己的 AI API Key（支援任何 Anthropic 相容介面）',
   'dl.dmg': '下載 .dmg（推薦）',
   'dl.zip': '下載 .zip',
-  'dl.note': 'macOS 14 Sonoma 及以上 · 免安裝相依套件',
+'dl.note': 'macOS 14 Sonoma 及以上 · Apple Silicon · 需已安裝 ffmpeg（brew install ffmpeg）',
   'dl.sign': '⚠︎ 未使用付費開發者憑證簽署，首次開啟需右鍵 → 打開',
   'dl.file': '檔案',
   'dl.size': '大小',
@@ -107,10 +107,12 @@ window.I18N.define('zh-Hant', {
   'faq.5.q': '原始碼為什麼不公開？',
   'faq.5.a1': 'AISub 以安裝包散佈，原始碼暫不公開。如果你有具體需求，歡迎在 Issues 裡說明。',
 
-  'foot.tagline': 'Swift + AppKit 編寫 · 無第三方相依套件',
+'foot.tagline': 'Swift + AppKit 编写 · 依賴 ffmpeg（GPL/LGPL）',
   'foot.links': 'GitHub',
   'foot.releases': 'Releases',
-  'foot.feedback': '意見回饋',
+'foot.feedback': '意見回饋',
+  'foot.privacy': '隱私權政策',
+  'foot.terms': '服務條款',
 
   'img.main.alt': 'AISub 正在批次翻譯整季：第 2 集翻譯到 180/596，其餘排隊中，日誌面板顯示內建 Matroska 解析器僅讀 2.43 MB 索引即定位 596 條字幕軌',
   'img.drop.alt': '空狀態：拖入影片或字幕檔案，也支援整個資料夾一次拖入整季',

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of Use · AISub</title>
+<meta name="description" content="Terms of Use for AISub, a macOS app that translates embedded subtitle tracks using an AI endpoint you provide.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .doc { max-width: 760px; margin: 0 auto; padding: 96px 24px 120px; }
+  .doc h1 { font-size: 40px; letter-spacing: -.02em; margin: 0 0 8px; }
+  .doc .meta { color: var(--text-mute); font-size: 14px; margin-bottom: 8px; }
+  .doc h2 { font-size: 22px; margin: 40px 0 12px; letter-spacing: -.01em; }
+  .doc p, .doc li { color: var(--text-2); line-height: 1.75; font-size: 16px; }
+  .doc ul { padding-left: 22px; }
+  .doc li { margin: 6px 0; }
+  .doc code { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 13px; }
+  .doc strong { color: var(--text); }
+  .doc .note { border-left: 3px solid var(--brand); padding: 12px 18px; background: var(--surface); border-radius: 0 10px 10px 0; margin: 20px 0; }
+  .doc .note p { margin: 0; color: var(--text); }
+  .doc a { color: var(--brand); }
+  .doc hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html">
+      <img src="assets/logo.png" alt="AISub">
+      <span>AISub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html" aria-current="page">Terms</a>
+    </div>
+  </div>
+</nav>
+
+<main class="doc">
+  <span class="eyebrow">LEGAL</span>
+  <h1>Terms of Use</h1>
+  <p class="meta">Effective 9 October 2026 · Applies to AISub 2.1.0 and later</p>
+
+  <h2>1. Agreement</h2>
+  <p>By downloading or using AISub (the "App") you agree to these terms. If you do not agree, do not use the App. These terms apply to the version you download; the version currently published on the project's releases page is always the one governed here.</p>
+
+  <h2>2. Licence</h2>
+  <p>You are granted a personal, non-exclusive, non-transferable licence to use the App on any Mac you own or control. You may not redistribute, resell, sublicense or repackage the App, nor modify it to produce a derivative work.</p>
+
+  <h2>3. Requirements</h2>
+  <ul>
+    <li><strong>macOS 14 Sonoma or later</strong> on Apple Silicon. The App is a native binary and will not run on Intel Macs.</li>
+    <li><strong>ffmpeg and ffprobe</strong> must already be installed. The App does not bundle them. Install with <code>brew install ffmpeg</code>, or point to them in Settings.</li>
+    <li><strong>Your own AI API key.</strong> AISub ships with no model access of its own. The App talks to whichever Anthropic-compatible endpoint you configure, and you are responsible for that account, its cost and its billing.</li>
+  </ul>
+
+  <h2>4. Your responsibilities</h2>
+  <p>You are solely responsible for:</p>
+  <ul>
+    <li>Complying with the terms of service of the AI provider you configure.</li>
+    <li>Reviewing machine-translated output before relying on it. Subtitle translation is imperfect and can misrepresent meaning. Do not use AISub output as the sole basis for a medical, legal, financial or safety-critical understanding.</li>
+    <li>Keeping your API key safe. Anyone with your key can spend your money.</li>
+  </ul>
+
+  <h2>5. Copyright</h2>
+  <div class="note">
+    <p><strong>Translating subtitles is a personal-use activity.</strong> Films, series and video files carry copyright. Producing a translated subtitle file for your own viewing is generally treated as personal use; republishing, sharing or monetising translated subtitles is not. You accept full responsibility for how you use the output, including any obligation to credit or licence the underlying work in your jurisdiction.</p>
+  </div>
+  <p>AISub does not host, index or distribute any media or subtitle content. It is a local tool that operates on files you already have.</p>
+
+  <h2>6. No warranty</h2>
+  <p>The App is provided "as is" and "as available", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement. We do not warrant that the App will be uninterrupted, error-free, or that translated output will be accurate, complete or free of errors.</p>
+
+  <h2>7. Limitation of liability</h2>
+  <p>To the maximum extent permitted by law, the authors and copyright holders of AISub shall not be liable for any claim, damages, data loss, or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the App or its use. This includes loss of data, corrupted output, costs incurred from your AI provider, and any indirect or consequential damages.</p>
+  <p>Nothing in these terms excludes liability that cannot lawfully be excluded, such as liability for death or personal injury caused by negligence.</p>
+
+  <h2>8. Indemnity</h2>
+  <p>You agree to indemnify the authors of AISub against any claim, demand, loss or expense, including reasonable legal fees, arising from your use of the App, your violation of these terms, or your infringement of any third-party right, including copyright in translated output.</p>
+
+  <h2>9. Updates</h2>
+  <p>The App checks GitHub for new releases. We may modify, discontinue or withdraw the App at any time without notice. We do not promise to maintain compatibility with future macOS releases or future API formats.</p>
+
+  <h2>10. Changes to these terms</h2>
+  <p>We may update these terms. The effective date at the top will change and the revised version will be published at this URL. Continuing to use the App after a change means you accept the updated terms.</p>
+
+  <h2>11. Third-party components</h2>
+  <p>AISub invokes <code>ffmpeg</code> and <code>ffprobe</code> locally. Those tools are separate projects distributed by their own authors under their own licences (ffmpeg is typically LGPL or GPL depending on build). AISub does not modify or redistribute them, but their use is governed by their respective licences, which you accept when you install them.</p>
+
+  <h2>12. Governing law</h2>
+  <p>These terms are governed by the laws of the jurisdiction in which the project maintainer resides, without regard to conflict-of-law principles. If any provision is found unenforceable, the remaining provisions stay in effect.</p>
+
+  <hr>
+  <p style="color:var(--text-mute);font-size:14px">AISub is an independent project and is not affiliated with, endorsed by or sponsored by Anthropic, ffmpeg, or any other third party named in this document. Trademarks belong to their respective owners.</p>
+  <p style="color:var(--text-mute);font-size:14px"><a href="index.html">← Back to AISub</a></p>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">AISub</div>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="https://github.com/zhengxiexie/aisub/issues" target="_blank" rel="noopener">Feedback</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

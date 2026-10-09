@@ -76,7 +76,7 @@ window.I18N.define('zh-Hans', {
   'dl.sub': '需要你自己的 AI API Key（支持任何 Anthropic 兼容接口）',
   'dl.dmg': '下载 .dmg（推荐）',
   'dl.zip': '下载 .zip',
-  'dl.note': 'macOS 14 Sonoma 及以上 · 免安装依赖',
+'dl.note': 'macOS 14 Sonoma 及以上 · Apple Silicon · 需已安装 ffmpeg（brew install ffmpeg）',
   'dl.sign': '⚠︎ 未使用付费开发者证书签名，首次打开需右键 → 打开',
   'dl.file': '文件',
   'dl.size': '大小',
@@ -107,10 +107,12 @@ window.I18N.define('zh-Hans', {
   'faq.5.q': '源码为什么不公开？',
   'faq.5.a1': 'AISub 以安装包分发，源码暂不公开。如果你有具体需求，欢迎在 Issues 里说明。',
 
-  'foot.tagline': 'Swift + AppKit 编写 · 无第三方依赖',
+'foot.tagline': 'Swift + AppKit 编写 · 依赖 ffmpeg（GPL/LGPL）',
   'foot.links': 'GitHub',
   'foot.releases': 'Releases',
-  'foot.feedback': '反馈',
+'foot.feedback': '反馈',
+  'foot.privacy': '隐私政策',
+  'foot.terms': '服务条款',
 
   'img.main.alt': 'AISub 正在批量翻译整季：第 2 集翻译到 180/596，其余排队中，日志面板显示内置 Matroska 解析器仅读 2.43 MB 索引即定位 596 条字幕轨',
   'img.drop.alt': '空状态：拖入视频或字幕文件，也支持整个文件夹一次拖入整季',

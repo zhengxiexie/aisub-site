@@ -76,7 +76,7 @@ window.I18N.define('ko', {
   'dl.sub': '직접 가진 AI API 키가 필요합니다(Anthropic 호환 엔드포인트면 무엇이든 가능)',
   'dl.dmg': '.dmg 다운로드(권장)',
   'dl.zip': '.zip 다운로드',
-  'dl.note': 'macOS 14 Sonoma 이상 · 추가 의존성 없음',
+'dl.note': 'macOS 14 Sonoma 이상 · Apple Silicon · ffmpeg 필요 (brew install ffmpeg)',
   'dl.sign': '⚠︎ 유료 개발자 인증서로 서명하지 않아 첫 실행 시 우클릭 → 열기가 필요합니다',
   'dl.file': '파일',
   'dl.size': '크기',
@@ -107,10 +107,12 @@ window.I18N.define('ko', {
   'faq.5.q': '소스 코드를 공개하지 않는 이유는?',
   'faq.5.a1': 'AISub 는 앱 번들로 배포하며 현재 소스는 공개하지 않습니다. 구체적인 필요사항이 있으면 Issue 에 알려주세요.',
 
-  'foot.tagline': 'Swift + AppKit 으로 작성 · 외부 의존성 없음',
+'foot.tagline': 'Swift + AppKit로 개발 · ffmpeg 사용 (GPL/LGPL)',
   'foot.links': 'GitHub',
   'foot.releases': 'Releases',
-  'foot.feedback': '피드백',
+'foot.feedback': '피드백',
+  'foot.privacy': '개인정보 처리방침',
+  'foot.terms': '이용약관',
 
   'img.main.alt': 'AISub 이 시즌 전체를 일괄 번역하는 중: 2 화는 180/596 진행, 나머지는 대기 중. 로그 패널에는 내장 Matroska 파서가 2.43 MB 인덱스만 읽어 596 개 자막 트랙을 찾아낸 내역',
   'img.drop.alt': '빈 상태: 영상이나 자막 파일을 끌어다 놓거나, 폴더로 시즌 전체를 한번에',

@@ -76,7 +76,7 @@ window.I18N.define('ja', {
   'dl.sub': 'ご自分の AI API キーが必要です（Anthropic 互換のエンドポイントであれば何でも）',
   'dl.dmg': '.dmg をダウンロード（推奨）',
   'dl.zip': '.zip をダウンロード',
-  'dl.note': 'macOS 14 Sonoma 以降 · 追加依存なし',
+'dl.note': 'macOS 14 Sonoma 以降 · Apple Silicon · ffmpeg が必要です（brew install ffmpeg）',
   'dl.sign': '⚠︎ 有料の開発者証明書で署名していないため、初回は右クリック → 開く',
   'dl.file': 'ファイル',
   'dl.size': 'サイズ',
@@ -107,10 +107,12 @@ window.I18N.define('ja', {
   'faq.5.q': 'ソースを公開しないのはなぜ？',
   'faq.5.a1': 'AISub はアプリバンドルとして配布しており、現時点でソースは公開していません。具体的な要望があれば Issue でお聞かせください。',
 
-  'foot.tagline': 'Swift + AppKit製 · 外部依存なし',
+'foot.tagline': 'Swift + AppKit で開発 · ffmpeg を使用 (GPL/LGPL)',
   'foot.links': 'GitHub',
   'foot.releases': 'Releases',
-  'foot.feedback': 'フィードバック',
+'foot.feedback': 'フィードバック',
+  'foot.privacy': 'プライバシー',
+  'foot.terms': '利用規約',
 
   'img.main.alt': 'AISubが一季を一括翻訳：第2集は180/596まで進行し、残りは待機中。ログパネルには内蔵Matroskaパーサが2.43 MBのインデックス読みだけで596件の字幕トラックを特定した表示',
   'img.drop.alt': '空の状態：動画または字幕ファイルのドロップ。またはフォルダ単位で一季まとめて',

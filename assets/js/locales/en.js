@@ -76,7 +76,7 @@ window.I18N.define('en', {
   'dl.sub': 'Requires your own AI API key (any Anthropic-compatible endpoint)',
   'dl.dmg': 'Download .dmg (recommended)',
   'dl.zip': 'Download .zip',
-  'dl.note': 'macOS 14 Sonoma or later · no extra dependencies',
+'dl.note': 'macOS 14 Sonoma or later · Apple Silicon · requires ffmpeg (brew install ffmpeg)',
   'dl.sign': '⚠︎ Unsigned with a paid developer certificate — right-click → Open on first launch',
   'dl.file': 'File',
   'dl.size': 'Size',
@@ -107,10 +107,12 @@ window.I18N.define('en', {
   'faq.5.q': 'Why is the source not public?',
   'faq.5.a1': 'AISub ships as a signed app bundle and the source is not public at the moment. If you have a concrete need, please describe it in an Issue.',
 
-  'foot.tagline': 'Written in Swift + AppKit · No third-party dependencies',
+'foot.tagline': 'Written in Swift + AppKit · Uses ffmpeg (GPL/LGPL)',
   'foot.links': 'GitHub',
   'foot.releases': 'Releases',
-  'foot.feedback': 'Feedback',
+'foot.feedback': 'Feedback',
+  'foot.privacy': 'Privacy',
+  'foot.terms': 'Terms',
 
   'img.main.alt': 'AISub translating a whole season: episode 2 at 180/596 while the rest sit queued, with the log panel showing the built-in Matroska parser locating 596 cues from a 2.43 MB index read',
   'img.drop.alt': 'Empty state: drop in videos or subtitle files, or a whole folder for an entire season',
