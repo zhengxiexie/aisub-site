@@ -1,0 +1,17 @@
+# 本地预览
+dist/
+.DS_Store
+*.log
+
+# 截图工作副本（先不入库，确认后再提交）
+assets/screenshots/*.png
+!assets/screenshots/.gitkeep
+
+# 本地预览
+dist/
+.DS_Store
+*.log
+
+# 截图工作副本（先不入库，确认后再提交）
+assets/screenshots/*.png
+!assets/screenshots/.gitkeep
