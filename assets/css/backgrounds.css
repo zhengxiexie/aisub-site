@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Background Effects — 背景效果
+   ========================================================================== */
+
+/* Aurora 光晕 */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-background);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aurora span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: drift 24s var(--ease) infinite alternate;
+}
+
+.aurora span:nth-child(1) {
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+  top: -260px;
+  left: -180px;
+  opacity: 0.08;
+}
+
+.aurora span:nth-child(2) {
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  top: 6%;
+  right: -220px;
+  opacity: 0.06;
+  animation-delay: -8s;
+}
+
+.aurora span:nth-child(3) {
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(187, 135, 73, 0.5) 0%, transparent 70%);
+  top: 42%;
+  left: 34%;
+  opacity: 0.04;
+  animation-delay: -16s;
+}
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(70px, 80px, 0) scale(1.2); }
+}
+
+/* Grid 网格纹理 */
+.grid-tex {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-backdrop);
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, var(--grid-opacity)) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, var(--grid-opacity)) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 30%, transparent 100%);
+}
