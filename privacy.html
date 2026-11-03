@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy · AISub</title>
-<meta name="description" content="How AISub handles your data: local processing, Keychain-stored API key, and the exact text sent to your chosen AI provider.">
+<meta name="description" content="How AISub handles your data: local subtitle parsing, Keychain-stored keys, the text sent to your AI provider, and the audio upload that only happens if you allow speech recognition.">
 <meta property="og:title" content="Privacy Policy · AISub">
 <meta property="og:description" content="No telemetry, no analytics, no account. Your API key sits in the macOS Keychain and the only data that leaves your Mac is subtitle text sent to the AI provider you chose.">
 <meta property="og:type" content="article">
@@ -13,7 +13,7 @@
 <meta property="og:image" content="https://zhengxiexie.github.io/aisub-site/assets/og-image.png">
 <meta name="robots" content="index, follow">
 <link rel="icon" type="image/png" href="assets/logo.png">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/editorial.css?v=2">
 <style>
   .doc { max-width: 760px; margin: 0 auto; padding: 96px 24px 120px; }
   .doc h1 { font-size: 40px; letter-spacing: -.02em; margin: 0 0 8px; }
@@ -53,16 +53,16 @@
 <main class="doc">
   <span class="eyebrow">LEGAL</span>
   <h1>Privacy Policy</h1>
-  <p class="meta">Effective 9 October 2026 · Applies to AISub 2.1.0 and later</p>
+  <p class="meta">Effective 3 November 2026 · Applies to AISub 2.3.4 and later</p>
 
   <div class="note">
-    <p><strong>Short version:</strong> AISub has no account, no telemetry and no analytics. Your video and subtitle files are never uploaded anywhere. The only data that leaves your Mac is the subtitle text you chose to translate, and that goes to the AI provider <em>you</em> configured.</p>
+    <p><strong>Short version:</strong> AISub has no account, no telemetry and no analytics. Video and subtitle files are parsed on your Mac. Two things can leave it: the subtitle text you asked to translate — sent to the AI provider <em>you</em> configured — and, only if a file has no text track and only after you agree, the audio track sent to the speech engine you picked. Choose whisper.cpp and even the audio stays local.</p>
   </div>
 
   <h2>1. What AISub does not do</h2>
   <p>The app contains no telemetry, no analytics SDK, no crash reporting service and no advertising identifier. It does not collect usage statistics and it does not phone home. The only network requests the app makes are the two described below.</p>
 
-  <h2>2. The two network requests</h2>
+  <h2>2. The network requests</h2>
   <table>
     <thead><tr><th>Request</th><th>When</th><th>What is sent</th></tr></thead>
     <tbody>
@@ -75,6 +75,11 @@
         <td>GitHub Releases API</td>
         <td>Once at launch, and when you check for updates</td>
         <td>A normal HTTPS GET for the public release metadata. No personal data is attached.</td>
+      </tr>
+      <tr>
+        <td>Speech recognition</td>
+        <td>Only when a file has no usable text track, and only after you agree to the prompt</td>
+        <td>The extracted audio track of that one file, split into 10-minute chunks, sent to the engine you selected. Cloud engines only — whisper.cpp keeps it on your Mac. Your AI endpoint never receives audio.</td>
       </tr>
     </tbody>
   </table>
@@ -94,17 +99,19 @@
     <li><strong>Your API key.</strong> Stored in the macOS Keychain under the service name <code>com.zhengxie.aisub</code>, never in a preferences file. This is deliberate: a plist in <code>~/Library/Preferences</code> can be read by any process on the machine and swept up by backups. If you used an older build that stored the key in plain text, AISub migrates it into the Keychain on first launch and deletes the old copy. You can verify this by searching for <code>apiKey</code> in <code>defaults read com.zhengxie.aisub</code> — it should not appear.</li>
     <li><strong>Your settings.</strong> Language, batch size, theme and tool paths are stored in standard macOS <code>UserDefaults</code> under <code>com.zhengxie.aisub</code>. These are preferences only and contain nothing sensitive.</li>
     <li><strong>Resume progress.</strong> If you enable checkpointing, translation progress is written to a file next to your output so an interrupted job can continue. Delete it whenever you like.</li>
+    <li><strong>Speech-recognition cache.</strong> If you use speech recognition, the extracted audio, the 10-minute chunks and each chunk's result are cached under <code>~/Library/Caches/com.zhengxie.aisub/asr</code> so an interrupted run can resume without uploading again. Only the upload itself leaves your Mac. The folder is removed when the job succeeds, and entries untouched for seven days are pruned at launch.</li>
   </ul>
 
   <h2>5. Local subprocesses</h2>
   <p>AISub shells out to <code>ffmpeg</code> and <code>ffprobe</code> to read the embedded subtitle track out of your video. These are the same tools you install from Homebrew for any video work. AISub never uploads files itself, and it does not modify or delete your originals.</p>
-  <p><strong>ffmpeg is not bundled.</strong> It must already be on your system, for example <code>brew install ffmpeg</code>. The path is configurable in Settings if it lives somewhere unusual.</p>
+  <p><strong>ffmpeg is not bundled.</strong> If <code>ffmpeg</code> and <code>ffprobe</code> are already on your <code>PATH</code>, that copy is used. Otherwise AISub asks once and downloads static builds into <code>~/Library/Application Support/com.zhengxie.aisub/bin</code>, removing the quarantine attribute and verifying each binary by running <code>-version</code>. That download is an ordinary HTTPS request for a public GitHub release; no data about you is attached.</p>
 
   <h2>6. Third-party services</h2>
   <ul>
     <li><strong>Your AI provider</strong> — receives subtitle text as described in section 3.</li>
     <li><strong>GitHub</strong> — serves the release files you download and the update check. Your download is an ordinary request to a public CDN.</li>
     <li><strong>ffmpeg</strong> — runs locally on your machine. It makes no network requests.</li>
+    <li><strong>Speech engines</strong> — Bilibili, ByteDance, Deepgram or your own Whisper endpoint, but only for files you explicitly allowed speech recognition on. whisper.cpp runs locally and contacts nobody.</li>
   </ul>
   <p>We do not embed advertising trackers, session replay tools or third-party pixels anywhere in AISub or on this website.</p>
 

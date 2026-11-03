@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AISub · Bilingual subtitles for any video</title>
-<meta name="description" content="AISub is a macOS app: drop in videos or a whole season, it reads the embedded subtitle track, AI translates and aligns the timing, output bilingual .srt. Files never leave your Mac.">
+<meta name="description" content="AISub is a macOS app: drop in videos or a whole season, read the embedded subtitle track, AI translates and aligns the timing, output bilingual .srt. If a release has no text track, it can transcribe the audio with a local or cloud speech engine.">
 <meta property="og:title" content="AISub — Bilingual subtitles for any video, translated by AI">
 <meta property="og:description" content="Drop in a whole season → read the embedded subtitle track → AI translates and aligns the timing → bilingual .srt out. Native macOS, bring your own API key, no subscription.">
 <meta property="og:type" content="website">
@@ -20,19 +20,10 @@
 <meta name="twitter:image:alt" content="AISub, a native macOS app that turns videos into bilingual subtitles by translating the embedded subtitle track with AI">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/logo.png">
-<link rel="stylesheet" href="assets/css/tokens.css">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/backgrounds.css">
-<link rel="stylesheet" href="assets/css/components.css">
-<link rel="stylesheet" href="assets/css/navigation.css">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/editorial.css?v=2">
 </head>
 <body>
 
-<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
-<div class="grid-tex" aria-hidden="true"></div>
-
-<!-- ============================ 导航 ============================ -->
 <nav class="nav">
   <div class="wrap nav-inner">
     <a class="nav-brand" href="#top">
@@ -42,28 +33,28 @@
 
     <div class="nav-links" id="navLinks">
       <a href="#problem" data-i18n="nav.problem">Problem</a>
-      <a href="#how"     data-i18n="nav.how">How</a>
+      <a href="#how" data-i18n="nav.how">How</a>
       <a href="#features" data-i18n="nav.features">Features</a>
-      <a href="#shots"   data-i18n="nav.shots">Screens</a>
+      <a href="#engines" data-i18n="nav.engines">Engines</a>
       <a href="#posts-section" data-i18n="nav.posts">Changelog</a>
-      <a href="#faq"     data-i18n="nav.faq">FAQ</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a class="nav-cta" href="#download" data-i18n="nav.cta">Download</a>
     </div>
 
     <div class="nav-tools">
       <div class="lang-switch" id="langSwitch">
         <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false">
-          <span aria-hidden="true">🌐</span><span class="cur">English</span><span class="chev">▼</span>
+          <span class="cur">English</span><span class="chev">▼</span>
         </button>
         <div class="lang-menu" role="menu">
-          <a href="#" data-lang="en"       role="menuitem">English    <span class="tick"></span></a>
-          <a href="#" data-lang="zh-Hans" role="menuitem">简体中文    <span class="tick"></span></a>
-          <a href="#" data-lang="zh-Hant" role="menuitem">繁體中文    <span class="tick"></span></a>
-          <a href="#" data-lang="ja"      role="menuitem">日本語      <span class="tick"></span></a>
-          <a href="#" data-lang="ko"      role="menuitem">한국어      <span class="tick"></span></a>
-          <a href="#" data-lang="fr"      role="menuitem">Français   <span class="tick"></span></a>
-          <a href="#" data-lang="de"      role="menuitem">Deutsch    <span class="tick"></span></a>
-          <a href="#" data-lang="es"      role="menuitem">Español     <span class="tick"></span></a>
+          <a href="#" data-lang="en"        role="menuitem">English <span class="tick"></span></a>
+          <a href="#" data-lang="zh-Hans"  role="menuitem">简体中文 <span class="tick"></span></a>
+          <a href="#" data-lang="zh-Hant"  role="menuitem">繁體中文 <span class="tick"></span></a>
+          <a href="#" data-lang="ja"       role="menuitem">日本語 <span class="tick"></span></a>
+          <a href="#" data-lang="ko"       role="menuitem">한국어 <span class="tick"></span></a>
+          <a href="#" data-lang="fr"       role="menuitem">Français <span class="tick"></span></a>
+          <a href="#" data-lang="de"       role="menuitem">Deutsch <span class="tick"></span></a>
+          <a href="#" data-lang="es"       role="menuitem">Español <span class="tick"></span></a>
         </div>
       </div>
 
@@ -76,41 +67,41 @@
   </div>
 </nav>
 
-<!-- ============================ Hero ============================ -->
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="hero-badge" data-reveal>
-      <span class="dot"></span>
-      <span data-i18n="hero.badge">Native macOS</span>
+    <div class="hero-copy">
+      <div class="hero-badge" data-reveal>
+        <span class="dot"></span>
+        <span data-i18n="hero.badge">Native macOS</span>
+      </div>
+
+      <h1 data-i18n="hero.title" data-reveal data-reveal-delay="80"></h1>
+
+      <p class="hero-sub" data-i18n="hero.sub" data-reveal data-reveal-delay="160"></p>
+
+      <div class="hero-actions" data-reveal data-reveal-delay="240">
+        <a class="btn btn-primary" href="#download">
+          <span aria-hidden="true">↓</span><span data-i18n="hero.cta1">Download</span>
+        </a>
+        <a class="btn btn-ghost" href="#how">
+          <span aria-hidden="true">→</span><span data-i18n="hero.cta2">How it works</span>
+        </a>
+      </div>
+
+      <p class="hero-meta" id="dlVersion" data-reveal data-reveal-delay="320"
+         data-i18n="hero.version"></p>
     </div>
 
-    <h1 data-i18n="hero.title" data-reveal data-reveal-delay="80"></h1>
-
-    <p class="hero-sub" data-i18n="hero.sub" data-reveal data-reveal-delay="160"></p>
-
-    <div class="hero-actions" data-reveal data-reveal-delay="240">
-      <a class="btn btn-primary" href="#download">
-        <span aria-hidden="true">↓</span><span data-i18n="hero.cta1">Download</span>
-      </a>
-      <a class="btn btn-ghost" href="#how">
-        <span aria-hidden="true">▸</span><span data-i18n="hero.cta2">How it works</span>
-      </a>
-    </div>
-
-    <p class="hero-meta" id="dlVersion" data-reveal data-reveal-delay="320"
-       data-i18n="hero.version"></p>
-
-    <div class="hero-visual" data-reveal data-reveal-delay="400">
-      <img src="assets/screenshots/01-main.jpg" data-i18n-attr="alt:img.main.alt" width="2266" height="1970">
+    <div class="hero-visual" data-reveal data-reveal-delay="200">
+      <img src="assets/screenshots/01-main.jpg" data-zoom data-i18n-attr="alt:img.main.alt" width="1716" height="1336">
     </div>
   </div>
 </header>
 
-<!-- ============================ 痛点 ============================ -->
 <section id="problem">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <span class="eyebrow" data-i18n="problem.eyebrow"></span>
+      <span class="eyebrow">01 — <span data-i18n="problem.eyebrow"></span></span>
       <h2 data-i18n="problem.title"></h2>
       <p data-i18n="problem.sub"></p>
     </div>
@@ -128,88 +119,80 @@
       </article>
     </div>
 
-    <p class="center dim mt-32" data-i18n="problem.outro" data-reveal></p>
+    <p class="dim mt-32" data-i18n="problem.outro" data-reveal></p>
   </div>
 </section>
 
-<!-- ============================ 原理 ============================ -->
 <section id="how">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <span class="eyebrow" data-i18n="how.eyebrow"></span>
+      <span class="eyebrow">02 — <span data-i18n="how.eyebrow"></span></span>
       <h2 data-i18n="how.title"></h2>
       <p data-i18n="how.sub"></p>
     </div>
 
     <div class="flow" data-reveal>
       <div class="flow-step">
-        <div class="flow-ico" aria-hidden="true">↓</div>
+        <div class="flow-ico" aria-hidden="true">01</div>
         <h4 data-i18n="how.1.title"></h4>
         <p data-i18n="how.1.body"></p>
       </div>
       <div class="flow-step">
-        <div class="flow-ico" aria-hidden="true">☰</div>
+        <div class="flow-ico" aria-hidden="true">02</div>
         <h4 data-i18n="how.2.title"></h4>
         <p data-i18n="how.2.body"></p>
       </div>
       <div class="flow-step">
-        <div class="flow-ico" aria-hidden="true">✦</div>
+        <div class="flow-ico" aria-hidden="true">03</div>
         <h4 data-i18n="how.3.title"></h4>
         <p data-i18n="how.3.body"></p>
       </div>
       <div class="flow-step">
-        <div class="flow-ico" aria-hidden="true">✓</div>
+        <div class="flow-ico" aria-hidden="true">04</div>
         <h4 data-i18n="how.4.title"></h4>
         <p data-i18n="how.4.body"></p>
       </div>
     </div>
 
-    <p class="center dim mt-32" data-i18n="how.outro" data-reveal></p>
+    <p class="dim mt-32" data-i18n="how.outro" data-reveal></p>
   </div>
 </section>
 
-<!-- ============================ 亮点 ============================ -->
 <section id="features">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <span class="eyebrow" data-i18n="feat.eyebrow"></span>
+      <span class="eyebrow">03 — <span data-i18n="feat.eyebrow"></span></span>
       <h2 data-i18n="feat.title"></h2>
       <p data-i18n="feat.sub"></p>
     </div>
 
     <div class="features">
       <div class="feature" data-reveal>
-        <div class="feature-ico" aria-hidden="true">⚡</div>
         <h4 data-i18n="feat.1.title"></h4>
         <p data-i18n="feat.1.body"></p>
         <span class="metric" data-i18n="feat.1.metric"></span>
       </div>
-      <div class="feature" data-reveal data-reveal-delay="80">
-        <div class="feature-ico" aria-hidden="true">◎</div>
+      <div class="feature" data-reveal data-reveal-delay="60">
         <h4 data-i18n="feat.2.title"></h4>
         <p data-i18n="feat.2.body"></p>
         <span class="metric" data-i18n="feat.2.metric"></span>
       </div>
-      <div class="feature" data-reveal data-reveal-delay="160">
-        <div class="feature-ico" aria-hidden="true">▤</div>
+      <div class="feature" data-reveal data-reveal-delay="120">
         <h4 data-i18n="feat.3.title"></h4>
         <p data-i18n="feat.3.body"></p>
         <span class="metric" data-i18n="feat.3.metric"></span>
       </div>
-      <div class="feature" data-reveal data-reveal-delay="240">
-        <div class="feature-ico" aria-hidden="true">◐</div>
+      <div class="feature" data-reveal data-reveal-delay="180">
         <h4 data-i18n="feat.4.title"></h4>
         <p data-i18n="feat.4.body"></p>
         <span class="metric" data-i18n="feat.4.metric"></span>
       </div>
-      <div class="feature" data-reveal>
-        <div class="feature-ico" aria-hidden="true">⬡</div>
+      <div class="feature" data-reveal data-reveal-delay="240">
         <h4 data-i18n="feat.5.title"></h4>
         <p data-i18n="feat.5.body"></p>
         <span class="metric" data-i18n="feat.5.metric"></span>
       </div>
-      <div class="feature" data-reveal data-reveal-delay="80">
-        <div class="feature-ico" aria-hidden="true">🌐</div>
+      <div class="feature" data-reveal data-reveal-delay="300">
         <h4 data-i18n="feat.6.title"></h4>
         <p data-i18n="feat.6.body"></p>
         <span class="metric" data-i18n="feat.6.metric"></span>
@@ -218,50 +201,59 @@
   </div>
 </section>
 
-<!-- ============================ 界面截图 ============================ -->
-<section id="shots">
+<section id="engines">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <span class="eyebrow" data-i18n="shots.eyebrow"></span>
-      <h2 data-i18n="shots.title"></h2>
-      <p data-i18n="shots.sub"></p>
+      <span class="eyebrow">04 — <span data-i18n="engines.eyebrow"></span></span>
+      <h2 data-i18n="engines.title"></h2>
+      <p data-i18n="engines.sub"></p>
     </div>
 
-    <div class="shots" data-reveal>
-      <figure class="shot wide">
-        <div class="shot-img">
-          <img src="assets/screenshots/01-main.jpg" data-zoom loading="lazy"
-               data-i18n-attr="alt:img.main.alt">
-        </div>
-        <figcaption class="shot-cap" data-i18n="shots.1.cap"></figcaption>
-      </figure>
-
-      <figure class="shot">
-        <div class="shot-img">
-          <img src="assets/screenshots/03-dropzone.jpg" data-zoom loading="lazy"
-               data-i18n-attr="alt:img.drop.alt">
-        </div>
-        <figcaption class="shot-cap" data-i18n="shots.2.cap"></figcaption>
-      </figure>
-
-      <figure class="shot">
-        <div class="shot-img">
-          <img src="assets/screenshots/02-settings.jpg" data-zoom loading="lazy"
-               data-i18n-attr="alt:img.settings.alt">
-        </div>
-        <figcaption class="shot-cap" data-i18n="shots.3.cap"></figcaption>
-      </figure>
+    <div class="features">
+      <div class="feature" data-reveal>
+        <h4 data-i18n="engines.1.title"></h4>
+        <p data-i18n="engines.1.body"></p>
+        <span class="metric" data-i18n="engines.1.metric"></span>
+      </div>
+      <div class="feature" data-reveal>
+        <h4 data-i18n="engines.2.title"></h4>
+        <p data-i18n="engines.2.body"></p>
+        <span class="metric" data-i18n="engines.2.metric"></span>
+      </div>
+      <div class="feature" data-reveal>
+        <h4 data-i18n="engines.3.title"></h4>
+        <p data-i18n="engines.3.body"></p>
+        <span class="metric" data-i18n="engines.3.metric"></span>
+      </div>
+      <div class="feature" data-reveal>
+        <h4 data-i18n="engines.4.title"></h4>
+        <p data-i18n="engines.4.body"></p>
+        <span class="metric" data-i18n="engines.4.metric"></span>
+      </div>
+      <div class="feature" data-reveal>
+        <h4 data-i18n="engines.5.title"></h4>
+        <p data-i18n="engines.5.body"></p>
+        <span class="metric" data-i18n="engines.5.metric"></span>
+      </div>
+      <div class="feature" data-reveal>
+        <h4 data-i18n="engines.6.title"></h4>
+        <p data-i18n="engines.6.body"></p>
+        <span class="metric" data-i18n="engines.6.metric"></span>
+      </div>
     </div>
+
+    <p class="center dim mt-32" data-i18n="engines.privacy" data-reveal></p>
   </div>
 </section>
 
-<!-- ============================ 下载 ============================ -->
 <section id="download">
   <div class="wrap">
     <div class="download-box" data-reveal>
-      <span class="eyebrow" data-i18n="dl.eyebrow"></span>
-      <h2 data-i18n="dl.title"></h2>
-      <p data-i18n="dl.sub"></p>
+      <div>
+        <span class="eyebrow" data-i18n="dl.eyebrow"></span>
+        <h2 data-i18n="dl.title"></h2>
+        <p data-i18n="dl.sub"></p>
+      </div>
 
       <div class="dl-row">
         <a class="btn btn-primary" id="dlDmg" href="https://github.com/zhengxiexie/aisub/releases/latest"
@@ -274,7 +266,7 @@
         </a>
       </div>
 
-      <p class="dl-note" id="dlNote" data-i18n="dl.note"></p>
+      <p class="dl-note" data-i18n="dl.note"></p>
 
       <table class="dl-table" id="dlAssets" hidden>
         <thead>
@@ -287,38 +279,34 @@
         <tbody></tbody>
       </table>
 
-      <p class="dl-note mt-32" data-i18n="dl.sign"></p>
+      <p class="dl-note" data-i18n="dl.sign"></p>
     </div>
   </div>
 </section>
 
-<!-- ============================ 日志 ============================ -->
 <section id="posts-section">
   <div class="wrap">
     <div class="posts-head" data-reveal>
       <div>
-        <span class="eyebrow" data-i18n="posts.eyebrow"></span>
+        <span class="eyebrow">05 — <span data-i18n="posts.eyebrow"></span></span>
         <h2 data-i18n="posts.title"></h2>
       </div>
-      <a class="btn btn-ghost" style="padding:9px 18px;font-size:14px;"
-         href="https://github.com/zhengxiexie/aisub/issues" target="_blank" rel="noopener"
-         data-i18n="posts.cta"></a>
+      <a class="btn btn-ghost" href="https://github.com/zhengxiexie/aisub/issues"
+         target="_blank" rel="noopener" data-i18n="posts.cta"></a>
     </div>
 
     <div class="posts-grid" id="posts" data-reveal>
       <p class="dim" data-i18n="posts.loading"></p>
     </div>
 
-    <p class="center dim mt-32" style="font-size:13.5px"
-       data-i18n="posts.hint" data-reveal></p>
+    <p class="dim mt-32" style="font-size:13px" data-i18n="posts.hint" data-reveal></p>
   </div>
 </section>
 
-<!-- ============================ FAQ ============================ -->
 <section id="faq">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <span class="eyebrow" data-i18n="faq.eyebrow"></span>
+      <span class="eyebrow">06 — <span data-i18n="faq.eyebrow"></span></span>
       <h2 data-i18n="faq.title"></h2>
     </div>
 
@@ -357,24 +345,37 @@
           <p data-i18n="faq.5.a1"></p>
         </div>
       </details>
+      <details class="faq-item">
+        <summary data-i18n="faq.6.q"></summary>
+        <div class="faq-body">
+          <p data-i18n="faq.6.a1"></p>
+          <p data-i18n="faq.6.a2"></p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq.7.q"></summary>
+        <div class="faq-body">
+          <p data-i18n="faq.7.a1"></p>
+          <p data-i18n="faq.7.a2"></p>
+        </div>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- ============================ 页脚 ============================ -->
 <footer class="footer">
   <div class="wrap">
     <div class="footer-inner">
       <div>
-        <div class="footer-brand">AISub <span id="footVersion" style="font-weight:400;color:var(--text-mute)"></span></div>
-        <div style="margin-top:4px" data-i18n="foot.tagline"></div>
+        <div class="footer-brand">AISub <span id="footVersion" style="font-weight:400;color:var(--muted);font-family:var(--mono);font-size:11px"></span></div>
+        <div style="margin-top:6px" data-i18n="foot.tagline"></div>
       </div>
       <div class="footer-links">
         <a href="https://github.com/zhengxiexie/aisub" target="_blank" rel="noopener"
            data-i18n="foot.links"></a>
         <a href="https://github.com/zhengxiexie/aisub/releases/latest" target="_blank" rel="noopener"
            data-i18n="foot.releases"></a>
-<a href="https://github.com/zhengxiexie/aisub/issues" target="_blank" rel="noopener"
+        <a href="https://github.com/zhengxiexie/aisub/issues" target="_blank" rel="noopener"
            data-i18n="foot.feedback"></a>
         <a href="privacy.html" data-i18n="foot.privacy"></a>
         <a href="terms.html" data-i18n="foot.terms"></a>
