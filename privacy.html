@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy · AISub</title>
-<meta name="description" content="How AISub handles your data: local subtitle parsing, Keychain-stored keys, the text sent to your AI provider, and the audio upload that only happens if you allow speech recognition.">
+<meta name="description" content="How AISub handles your data: local subtitle parsing and local OCR for bitmap subtitles, Keychain-stored keys, the text sent to your AI provider, and the audio upload that only happens if you allow speech recognition.">
 <meta property="og:title" content="Privacy Policy · AISub">
 <meta property="og:description" content="No telemetry, no analytics, no account. Your API key sits in the macOS Keychain and the only data that leaves your Mac is subtitle text sent to the AI provider you chose.">
 <meta property="og:type" content="article">
@@ -56,7 +56,7 @@
   <p class="meta">Effective 3 November 2026 · Applies to AISub 2.3.4 and later</p>
 
   <div class="note">
-    <p><strong>Short version:</strong> AISub has no account, no telemetry and no analytics. Video and subtitle files are parsed on your Mac. Two things can leave it: the subtitle text you asked to translate — sent to the AI provider <em>you</em> configured — and, only if a file has no text track and only after you agree, the audio track sent to the speech engine you picked. Choose whisper.cpp and even the audio stays local.</p>
+    <p><strong>Short version:</strong> AISub has no account, no telemetry and no analytics. Video and subtitle files are parsed on your Mac. Two things can leave it: the subtitle text you asked to translate — sent to the AI provider <em>you</em> configured — and, only if a file has no usable track and only after you agree, the audio track sent to the speech engine you picked. Bitmap subtitles (PGS) are decoded and read by OCR locally, so they never leave your Mac either. Choose whisper.cpp and even the audio stays local.</p>
   </div>
 
   <h2>1. What AISub does not do</h2>
@@ -100,10 +100,11 @@
     <li><strong>Your settings.</strong> Language, batch size, theme and tool paths are stored in standard macOS <code>UserDefaults</code> under <code>com.zhengxie.aisub</code>. These are preferences only and contain nothing sensitive.</li>
     <li><strong>Resume progress.</strong> If you enable checkpointing, translation progress is written to a file next to your output so an interrupted job can continue. Delete it whenever you like.</li>
     <li><strong>Speech-recognition cache.</strong> If you use speech recognition, the extracted audio, the 10-minute chunks and each chunk's result are cached under <code>~/Library/Caches/com.zhengxie.aisub/asr</code> so an interrupted run can resume without uploading again. Only the upload itself leaves your Mac. The folder is removed when the job succeeds, and entries untouched for seven days are pruned at launch.</li>
+    <li><strong>Image-subtitle cache.</strong> When a release ships bitmap subtitles (PGS), the extracted subtitle stream and the text recognized from it are cached under <code>~/Library/Caches/com.zhengxie.aisub/subtitle</code>, so a retry after a failed translation does not re-read the whole video. Both stay on your Mac and are never uploaded; the folder is removed when the job succeeds, and entries untouched for seven days are pruned at launch.</li>
   </ul>
 
   <h2>5. Local subprocesses</h2>
-  <p>AISub shells out to <code>ffmpeg</code> and <code>ffprobe</code> to read the embedded subtitle track out of your video. These are the same tools you install from Homebrew for any video work. AISub never uploads files itself, and it does not modify or delete your originals.</p>
+  <p>AISub shells out to <code>ffmpeg</code> and <code>ffprobe</code> to read the embedded subtitle track out of your video, and to pull a bitmap subtitle stream out of releases that only ship PGS. Bitmap frames are then recognized by Apple's Vision OCR framework, which runs entirely on your Mac. These are the same tools you install from Homebrew for any video work. AISub never uploads files itself, and it does not modify or delete your originals.</p>
   <p><strong>ffmpeg is not bundled.</strong> If <code>ffmpeg</code> and <code>ffprobe</code> are already on your <code>PATH</code>, that copy is used. Otherwise AISub asks once and downloads static builds into <code>~/Library/Application Support/com.zhengxie.aisub/bin</code>, removing the quarantine attribute and verifying each binary by running <code>-version</code>. That download is an ordinary HTTPS request for a public GitHub release; no data about you is attached.</p>
 
   <h2>6. Third-party services</h2>
